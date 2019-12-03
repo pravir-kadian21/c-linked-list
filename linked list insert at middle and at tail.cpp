@@ -35,6 +35,7 @@ void insertattail(node *&head,int data){
         temp=temp->next;
     }
     temp->next=n;
+    n->next=NULL;
 }
 
 void insertatmiddle(node *&head,int data,int p){
