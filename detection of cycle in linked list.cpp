@@ -23,20 +23,17 @@ void print(node *head){
         head=head->next;
     }
 }
-void iscyclic(node *head){
+bool iscyclic(node *head){
     node *slow=head;
-    node *fast=head->next;
+    node *fast=head;
     while(fast!=NULL && fast->next!=NULL){
-        if(fast==slow){
-            cout << "is cyclic" << endl;
-            break;
-        }
         slow=slow->next;
         fast=fast->next->next;
+        if(fast==slow){
+            return true;
+        }
     }
-    if(fast == NULL || fast->next == NULL){
-        cout << "not cyclic" << endl;
-    }
+    return false;
 }
 int main() {
     node *head=NULL;
@@ -46,5 +43,10 @@ int main() {
     insertathead(head,1);
     print(head);
     cout << endl;
-    iscyclic(head);
+    if(iscyclic(head)){
+        cout << "cycle found" << endl;
+    }
+    else{
+        cout << "cycle not found" << endl;
+    }
 }
